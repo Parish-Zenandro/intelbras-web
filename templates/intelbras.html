@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robô Intelbras</title>
+    <style>
+        body {
+            font-family: "Raleway", sans-serif;
+            padding: 0;
+            margin: 0;
+            background: #1b2a3c;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background: #ffffff;
+            padding: 30px 0px;
+            border-radius: 10px;
+            min-width: 600px;
+            max-width: 600px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        label {
+            cursor: pointer;
+        }
+        input {
+            display: none;
+        }
+        button {
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        h1 {
+            margin-bottom: 30px;
+            margin-top: 0px;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+            margin-top: 70px;
+        }
+        img {
+            scale: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/"><img src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
+    </header>
+    <main>
+        <h1>Robô Intelbras</h1>
+        <form action="/" method="POST" enctype="multipart/form-data" class="form">
+            <label for="file" class="inputLabel">Clique para inserir a planilha</label>
+            <input type="file" name="file" id="file" accept=".xlsx" class="input">
+            <button type="submit" class="submitButton">Converter</button>
+        </form>
+    </main>
+    <script>
+        const fileInput = document.querySelector('.input')
+        const inputLabel = document.querySelector('.inputLabel')
+        const submitButton = document.querySelector('.submitButton')
+        submitButton.style.display = 'none'
+        function handleInputChange() {
+            if (fileInput.files.length > 0) {
+                inputLabel.innerText=`Arquivo carregado: ${fileInput.files[0].name}`
+                submitButton.style.display = 'block'
+            } else {
+                submitButton.style.display = 'none'
+            }
+        }
+        function resetSite() {
+            inputLabel.innerText=`Arquivo baixado com sucesso!\nClique aqui para converter outra planilha`
+        }
+        fileInput.addEventListener('change', handleInputChange)
+        submitButton.addEventListener('click', resetSite)
+    </script>
+</body>
+</html>
