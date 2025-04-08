@@ -4,6 +4,7 @@ from src.intelbras import Intelbras
 from src.auditoria_inss import clear_sheets_and_move_data, execucao_dos_fluxos
 import datetime
 from io import BytesIO
+import configparser, os
 
 
 @app.route("/", methods=['GET',])
@@ -26,28 +27,42 @@ def intelbras():
 
 @app.route("/auditoria", methods=['GET', 'POST'])
 def auditoria():
+
+    def get_planilha_base():
+        CONFIG_FILE = os.path.join(os.getcwd(), 'src', 'auditoria_inss', 'config', 'config.ini')
+        config = configparser.ConfigParser()
+        config.read(CONFIG_FILE, encoding='utf-8')
+        header_sheets = config['Sheets']
+        planilha_base = header_sheets["Planilha Base"]
+        return planilha_base
+    link_planilha = f"https://docs.google.com/spreadsheets/d/{get_planilha_base()}"
+
     if request.method == 'GET':
-        return render_template('auditoria.html')
+        return render_template('auditoria.html', link_planilha=link_planilha)
+    
     elif request.method == 'POST':
         command = request.form['command']
-        print(command)
+
         match command:
+
             case 'limpar_dados':
                 move_data = clear_sheets_and_move_data()
                 if move_data["success"]:
-                    return render_template('auditoria.html', dados_movidos=move_data["success"], link_planilha=move_data["sheet_url"])
+                    return render_template('auditoria.html', dados_movidos=move_data["success"], link_planilha=link_planilha)
                 else:
-                    return render_template('auditoria.html', dados_movidos=move_data["success"], link_planilha=None, error=move_data["error"])
+                    return render_template('auditoria.html', dados_movidos=move_data["success"], link_planilha=link_planilha, error=move_data["error"])
+                
             case 'enviar_diferenca':
-                # A PLANILHA AGORA É ENVIADA VIA POST. SALVAR EM MEMÓRIA E ATUALIZAR O SCRIPT DE EXECUÇÃO DO ROBÔ!
                 file = request.files['lpra']
                 file_bytes = BytesIO(file.read())
                 success = execucao_dos_fluxos(planilha_lpra=file_bytes)
                 if not success["success"]:
-                    return render_template('auditoria.html', error=success["error"])
-                return render_template('auditoria.html', success=success["success"], message=success["message"])
+                    return render_template('auditoria.html', error=success["error"], link_planilha=link_planilha)
+                return render_template('auditoria.html', success=success["success"], message=success["message"], link_planilha=link_planilha)
+            
     else:
-        return render_template('auditoria.html')
+        return render_template('auditoria.html', link_planilha=link_planilha)
+
 
 @app.route("/auditoria/changelog")
 def auditoria_changelog():
