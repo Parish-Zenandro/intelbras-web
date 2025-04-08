@@ -49,3 +49,8 @@ def auditoria():
     else:
         return render_template('auditoria.html')
 
+@app.route("/auditoria/changelog")
+def auditoria_changelog():
+    if request.method != 'GET':
+        return Response(status=405)
+    return render_template('auditoria_changelog.html')

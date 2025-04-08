@@ -75,6 +75,7 @@
         }
         header {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin-bottom: 50px;
@@ -106,6 +107,13 @@
         .lpraLabel:hover {
             transform: scale(1.05);
         }
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            text-align: justify;
+            margin: 0 40px;
+        }
     </style>
 </head>
 <body>
@@ -113,53 +121,14 @@
         <a href="/"><img src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
     </header>
     <main>
-        <h1>Auditoria INSS</h1>
-
-        {% if not link_planilha %}
-        <form method="POST" class="form">
-            <input type="hidden" value="limpar_dados" id="command" name="command">
-            <button type="submit" id="passo1Button">Passo 1 - Limpar dados das planilhas</button>
-        </form>
-
-        {% elif link_planilha %}
-        <a href="{{link_planilha}}" target="_blank" class="linkPlanilha">
-        <button class="linkPlanilha">
-            <img src="https://maxplanilhas.com.br/wp-content/uploads/2021/06/icon-excel2.png" style="max-width: 30px;"/>
-            <span>Clique para acessar as planilhas</span>
-        </button>
-        </a>
-
-        <form method="POST" class="form" enctype="multipart/form-data">
-            <label for="lpra" class="lpraLabel"><span>Insira a planilha LPRA</span><img src="https://pixsector.com/cache/d69e58d4/avbfe351f753bcaa24ae2.png" style="max-width: 30px;" class="uploadIcon"/></label>
-            <input type="file" required accept=".xlsx" id="lpra" name="lpra" hidden>
-            <input type="hidden" value="enviar_diferenca" id="command" name="command">
-            <button type="submit" class="submitWithFile" hidden>Passo 2 - Enviar diferença para as planilhas</button>
-        </form>
-        {% endif %}
-        <script>
-            const input = document.querySelector('#lpra')
-            const label = document.querySelector('.lpraLabel')
-            const labelText = document.querySelector('.lpraLabel span')
-            const uploadIcon = document.querySelector('.uploadIcon')
-            const submitButton = document.querySelector('.submitWithFile')
-            function handleInputButton(){
-                if (input.files.length > 0) {
-                    label.style.backgroundColor = '#888888'
-                    label.style.cursor = 'not-allowed'
-                    labelText.innerText = input.files[0].name
-                    uploadIcon.src="https://cdn-icons-png.flaticon.com/512/5290/5290109.png"
-                    submitButton.hidden = false
-                } else {
-                    label.style.backgroundColor = '#d5a575'
-                    label.style.cursor = 'pointer'
-                    labelText.innerText = 'Insira a Planilha LPRA'
-                    uploadIcon.src="https://pixsector.com/cache/d69e58d4/avbfe351f753bcaa24ae2.png"
-                    submitButton.hidden = true
-                }
-            }
-            input.addEventListener('change', handleInputButton)
-        </script>
+        <h1>Auditoria INSS - changelog</h1>
+        <section>
+            <p><strong>02/04/2025 - </strong>Corrigido erro que limitava a leitura de e-mails</p>
+            <p><strong>07/04/2025 - </strong>Lançada a versão web para garantir que todos os usuários utilizem a mesma versão e manter a consistência da data de revisão dos processos em exigência</p>
+            <p><strong>08/04/2025 - </strong>Criada página de changelog para exibir as atualizações organizadas por data</p>
+        </section>
     </main>
+    <a href="/auditoria"><button style="background: white; color:#1b2a3c; width: auto; margin-top: 10px">voltar para o robô</button></a>
 
     {% if error %}
     <button style="background: #9d0a0a; margin-top: 10px; width: 600px; cursor: default;">ERRO: {{error}}</button>
@@ -167,6 +136,6 @@
     <button style="background: #127321; margin-top: 10px; width: 600px; cursor: default;">{{message}}</button>
     {% endif %}
     
-    <a href="/auditoria/changelog"><button style="background: white; color:#1b2a3c; width: auto; margin-top: 10px">changelog</button></a>
+    
 </body>
 </html>
