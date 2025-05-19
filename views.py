@@ -17,9 +17,12 @@ def home():
 @app.route("/intelbras", methods=['GET', 'POST'])
 def intelbras():
     if request.method == 'POST':
-        script = Intelbras()
-        csv = script.run(request.files['file'])
-        return send_file(csv, as_attachment=True, download_name=f"planilha intelbras_{datetime.date.today().strftime('%d-%m-%Y')}.csv", mimetype='text/csv')
+        try:
+            script = Intelbras()
+            csv = script.run(request.files['file'])
+            return send_file(csv, as_attachment=True, download_name=f"planilha intelbras_{datetime.date.today().strftime('%d-%m-%Y')}.csv", mimetype='text/csv')
+        except Exception as e:
+            return render_template("error.html", error=str(e))
     elif request.method == 'GET':
         return render_template('intelbras.html')
     else:
