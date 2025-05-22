@@ -3,124 +3,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auditoria INSS</title>
-    <style>
-        body {
-            font-family: "Raleway", sans-serif;
-            padding: 0;
-            margin: 0;
-            background: #1b2a3c;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-        }
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            background: #ffffff;
-            padding: 30px 0px;
-            border-radius: 10px;
-            min-width: 600px;
-            max-width: 600px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        label {
-            cursor: pointer;
-        }
-        button {
-            cursor: pointer;
-            margin-bottom: 15px;
-            background: #1b2a3c;
-            border-radius: 10px;
-            color: white;
-            border: none;
-            text-decoration: none;
-            padding: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            width: 300px;
-            font-family: 'Raleway', sans-serif;
-            font-weight: bold;
-            transition: all 0.5s;
-        }
-        button:hover {
-            transform: scale(1.05);
-        }
-        button.linkPlanilha {
-            background: #127321;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            border: 2px solid #127321;
-        }
-        button.linkPlanilha a {
-            color: white;
-        }
-        button.submitWithFile {
-            background: #888888;
-            cursor: not-allowed;
-        }
-        h1 {
-            margin-bottom: 30px;
-            margin-top: 0px;
-        }
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            margin-top: 70px;
-        }
-        img {
-            scale: 0.8;
-        }
-        a.linkPlanilha {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            gap: 10px;
-        }
-        .lpraLabel {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            background: #d5a575;
-            width: 300px;
-            border-radius: 10px;
-            font-weight: bold;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            transition: all 0.5s
-        }
-        .lpraLabel:hover {
-            transform: scale(1.05);
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <a href="/"><img src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
+    <header class="header">
+        <a href="/" class="link"><img class="pz-logo" src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
     </header>
-    <main>
-        <h1>Auditoria INSS</h1>
+    <main class="container">
+        <h1 class="title">Auditoria INSS</h1>
 
-        <a href="{{link_planilha}}" target="_blank" class="linkPlanilha">
-        <button class="linkPlanilha">
+        <a href="{{link_planilha}}" target="_blank" class="link-planilha">
+        <button class="button link-planilha">
             <img src="https://maxplanilhas.com.br/wp-content/uploads/2021/06/icon-excel2.png" style="max-width: 30px;"/>
             <span>Clique para acessar as planilhas</span>
         </button>
@@ -128,21 +25,21 @@
 
         <form method="POST" class="form">
             <input type="hidden" value="limpar_dados" id="command" name="command">
-            <button type="submit" id="passo1Button">Passo 1 - Limpar dados das planilhas</button>
+            <button class="button" type="submit" id="passo1Button">Passo 1 - Limpar dados das planilhas</button>
         </form>
 
         <form method="POST" class="form" enctype="multipart/form-data">
-            <label for="lpra" class="lpraLabel"><span>Insira a planilha LPRA</span><img src="https://pixsector.com/cache/d69e58d4/avbfe351f753bcaa24ae2.png" style="max-width: 30px;" class="uploadIcon"/></label>
+            <label for="lpra" class="lpra-label"><span>Insira a planilha LPRA</span><img src="https://pixsector.com/cache/d69e58d4/avbfe351f753bcaa24ae2.png" style="max-width: 30px;" class="upload-icon"/></label>
             <input type="file" required accept=".xlsx" id="lpra" name="lpra" hidden>
             <input type="hidden" value="enviar_diferenca" id="command" name="command">
-            <button type="submit" class="submitWithFile" disabled title="Você precisa anexar a planilha LPRA antes dessa ação">Passo 2 - Enviar diferença para as planilhas</button>
+            <button type="submit" class="button submit-with-file" disabled title="Você precisa anexar a planilha LPRA antes dessa ação">Passo 2 - Enviar diferença para as planilhas</button>
         </form>
         <script>
             const input = document.querySelector('#lpra')
-            const label = document.querySelector('.lpraLabel')
-            const labelText = document.querySelector('.lpraLabel span')
-            const uploadIcon = document.querySelector('.uploadIcon')
-            const submitButton = document.querySelector('.submitWithFile')
+            const label = document.querySelector('.lpra-label')
+            const labelText = document.querySelector('.lpra-label span')
+            const uploadIcon = document.querySelector('.upload-icon')
+            const submitButton = document.querySelector('.submit-with-file')
             function handleInputButton(){
                 if (input.files.length > 0) {
                     label.style.backgroundColor = '#888888'
@@ -169,11 +66,11 @@
     </main>
 
     {% if error %}
-    <button style="background: #9d0a0a; margin-top: 10px; width: 600px; cursor: default;">ERRO: {{error}}</button>
+    <div class="error">ERRO: {{error}}</div>
     {% elif success and message %}
-    <button style="background: #127321; margin-top: 10px; width: 600px; cursor: default;">{{message}}</button>
+    <button class="success">{{message}}</button>
     {% endif %}
     
-    <a href="/auditoria/changelog"><button style="background: white; color:#1b2a3c; width: auto; margin-top: 10px">changelog</button></a>
+    <a href="/auditoria/changelog" class="changelog-button">changelog</a>
 </body>
 </html>

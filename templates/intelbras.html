@@ -7,31 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robô Intelbras</title>
+    <link rel="stylesheet" href="../static/style.css">
     <style>
-        body {
-            font-family: "Raleway", sans-serif;
-            padding: 0;
-            margin: 0;
-            background: #1b2a3c;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-        }
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            background: #ffffff;
-            padding: 30px 0px;
-            border-radius: 10px;
-            min-width: 600px;
-            max-width: 600px;
-        }
         form {
             display: flex;
             flex-direction: column;
@@ -40,59 +17,25 @@
         label {
             cursor: pointer;
         }
-        input {
-            display: none;
-        }
         button {
             cursor: pointer;
             margin-bottom: 15px;
         }
-        h1 {
-            margin-bottom: 30px;
-            margin-top: 0px;
-        }
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            margin-top: 70px;
-        }
-        img {
-            scale: 0.8;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <a href="/"><img src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
+    <header class="header">
+        <a class="link" href="/"><img class="pz-logo" src="https://pz.adv.br/wp-content/uploads/2023/01/Molde-Logo-PZ.png" alt="Logo PZ Advogados"></a>
     </header>
-    <main>
-        <h1>Robô Intelbras</h1>
+    <main class="container">
+        <h1 class="title">Robô Intelbras</h1>
         <form action="/intelbras" method="POST" enctype="multipart/form-data" class="form">
-            <label for="file" class="inputLabel">Clique para inserir a planilha</label>
+            <label for="file" class="inputLabel">Insira a planilha para tratar</label>
             <input type="file" name="file" id="file" accept=".xlsx" class="input">
-            <button type="submit" class="submitButton">Converter</button>
+            <button type="submit" class="button">Converter</button>
         </form>
     </main>
     <script>
-        const fileInput = document.querySelector('.input')
-        const inputLabel = document.querySelector('.inputLabel')
-        const submitButton = document.querySelector('.submitButton')
-        submitButton.style.display = 'none'
-        function handleInputChange() {
-            if (fileInput.files.length > 0) {
-                inputLabel.innerText=`Arquivo carregado: ${fileInput.files[0].name}`
-                submitButton.style.display = 'block'
-            } else {
-                submitButton.style.display = 'none'
-            }
-        }
-        function resetSite() {
-            inputLabel.innerText=`Arquivo baixado com sucesso!\nClique aqui para converter outra planilha`
-        }
-        fileInput.addEventListener('change', handleInputChange)
-        submitButton.addEventListener('click', resetSite)
     </script>
 </body>
 </html>
