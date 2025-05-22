@@ -1,0 +1,175 @@
+:root {
+        --azul-pz: #0c2939;
+        --bege-pz: #d5a575;
+        --verde-planilha: #127321;
+}
+
+body {
+        font-family: "Raleway", sans-serif;
+        padding: 0;
+        margin: 0;
+        background: var(--azul-pz);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        }
+
+.pz-logo {
+        scale: 0.8;
+}
+
+.menu-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 10px;
+        background-color: var(--azul-pz);
+        color: #ffffff;
+        border-radius: 10px;
+        transition: all 0.5s;
+        box-shadow: 1px 1px 7px 1px #0000003c;
+}
+.menu-card:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+}
+
+.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        background: #ffffff;
+        padding: 30px 0px;
+        border-radius: 10px;
+        min-width: 600px;
+        max-width: 600px;
+}
+
+.menu-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+}
+
+
+.title {
+        margin-bottom: 30px;
+        margin-top: 0px;
+}
+
+.header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+        margin-top: 70px;
+}
+
+.link {
+        text-decoration: none;
+}
+
+.card-title {
+        margin: 0;
+        padding: 0;
+}
+
+.link-planilha {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        gap: 10px;
+}
+
+.lpra-label {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--bege-pz);
+        width: 300px;
+        border-radius: 10px;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        transition: all 0.5s
+}
+.lpra-label:hover {
+        transform: scale(1.05);
+}
+
+.button {
+        cursor: pointer;
+        margin-bottom: 15px;
+        background: var(--azul-pz);
+        border-radius: 10px;
+        color: white;
+        border: none;
+        text-decoration: none;
+        padding: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 300px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        transition: all 0.5s;
+}
+.button:hover {
+        transform: scale(1.05);
+}
+.button.link-planilha {
+        background: var(--verde-planilha);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border: 2px solid var(--verde-planilha);
+}
+.button.link-planilha a {
+        color: white;
+        text-decoration: none;
+}
+.button.submit-with-file {
+        background: #888888;
+        cursor: not-allowed;
+}
+
+.changelog-button {
+        background: #ffffff;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+        border-radius: 10px;
+        margin: 10px;
+        transition: transform 0.5s;
+}
+.changelog-button:hover {
+        transform: scale(1.05)
+}
+
+.error {
+        background: #9d0a0a;
+        margin-top: 10px;
+        width: 600px;
+        cursor: default;
+}
+.success {
+        background: #127321;
+        margin-top: 10px;
+        width: 600px;
+        cursor: default;
+}
+
+form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+}
