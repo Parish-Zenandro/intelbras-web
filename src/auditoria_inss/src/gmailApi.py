@@ -157,7 +157,7 @@ class GoogleGmailAPI():
         message = MIMEText(log_message)
         message['to'] = ', '.join(emails)
         message['from'] = 'roboemailinsss@pz.adv.br'
-        message['subject'] = f'[IGNORAR] Log Auditoria - {datetime.now().strftime("%d/%m/%Y")}'
+        message['subject'] = f'Log Auditoria - {datetime.now().strftime("%d/%m/%Y")}'
         raw_message = {'raw': base64.urlsafe_b64encode(message.as_bytes()).decode("utf-8")}
 
         sended_message = self.service.users().messages().send(userId="me", body=raw_message).execute()
