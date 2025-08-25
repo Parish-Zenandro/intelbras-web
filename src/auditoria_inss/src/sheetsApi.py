@@ -57,7 +57,7 @@ class GoogleSheetsAPI:
             return service
 
         except Exception as e:
-            ctypes.windll.user32.MessageBoxW(0, "O processo de validação das credenciais falhou, verifique a sua conexão com a internet", "Erro de Validação", 0)
+            print("O processo de validação das credenciais falhou, verifique a sua conexão com a internet", "Erro de Validação", 0)
             self.logger.warning_log(str(e))
             exit(0)
 
@@ -82,7 +82,7 @@ class GoogleSheetsAPI:
             return values
         except Exception as e:
             self.logger.warning_log(str(e))
-            ctypes.windll.user32.MessageBoxW(0, f"Ocorreu um erro ao obter os dados do Google Sheets", "Erro ao Obter Dados", 0)
+            print(f"Ocorreu um erro ao obter os dados do Google Sheets", "Erro ao Obter Dados", 0)
 
     def add_data_to_spreadsheet(self, spreadsheet_id, range_name, data):
         """
@@ -114,7 +114,7 @@ class GoogleSheetsAPI:
             return response
         except HttpError as err:
             self.logger.warning_log(str(err))
-            ctypes.windll.user32.MessageBoxW(None, f"Ocorreu um erro ao adicionar dados à planilha: {err}", "Erro ao Adicionar Dados", 0)
+            print(f"Ocorreu um erro ao adicionar dados à planilha: {err}", "Erro ao Adicionar Dados", 0)
 
     def clear_sheet(self, spreadsheet_id, range_name):
         """
@@ -137,7 +137,7 @@ class GoogleSheetsAPI:
             response = request.execute()
             return response
         except HttpError as err:
-            ctypes.windll.user32.MessageBoxW(None, f"Ocorreu um erro ao limpar o conteúdo da planilha: {err}", "Erro ao Limpar Planilha", 0)
+            print(f"Ocorreu um erro ao limpar o conteúdo da planilha: {err}", "Erro ao Limpar Planilha", 0)
     
     def move_and_clear_sheet(self, source_spreadsheet_id, source_range, destination_spreadsheet_id, destination_range):
         """
